@@ -8,8 +8,8 @@
 
 ## Data Retrieval Block
 data "aws_vpc" "observ-sec-eks" {
- count = "${length(data.aws_vpcs.account_vpcs.ids)}"
- id    = element(tolist(data.aws_vpcs.account_vpcs.ids), 0)
+ count = "${length(data.aws_vpcs.observ-sec-eks.ids)}"
+ id    = element(tolist(data.aws_vpcs.observ-sec-eks.ids), 0)
 }
 
 data "aws_subnet_ids" "eks_subnets" {
@@ -17,7 +17,7 @@ data "aws_subnet_ids" "eks_subnets" {
 }
 
 data "aws_subnet" "eks_subnet" {
-  for_each = data.aws_subnet_ids.aws_vpcs.observ-sec-eks.ids
+  for_each = data.aws_subnet_ids.observ-sec-eks.ids
   id    = each.value
 }
 
