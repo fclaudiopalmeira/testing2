@@ -2,7 +2,7 @@
 # EKS cluster role
 resource "aws_iam_role" "observ-sec-eks-cluster-role" {
   # Role config
-  name = "${var.cluster_name}-cluster-role"
+  name = "${var.cluster-name}-cluster-role"
   # STS assume role policy statement
   assume_role_policy = <<POLICY
 {
@@ -31,7 +31,7 @@ resource "aws_iam_role_policy_attachment" "observ-sec-eks-cluster-AmazonEKSServi
 # Managed worker node group role
 resource "aws_iam_role" "observ-sec-eks-node-group-role" {
   # Role config
-  name = "${var.cluster_name}-node-group-role"
+  name = "${var.cluster-name}-node-group-role"
   # STS assume role policy statement
   assume_role_policy = <<POLICY
 {
@@ -64,7 +64,7 @@ resource "aws_iam_role_policy_attachment" "observ-sec-eks-node-group-role-Amazon
  # ALB ingress controller admin policy
 resource "aws_iam_policy" "alb-ingress-controller-admin" {
   # Policy config
-  name        = "${var.cluster_name}-alb-ingress-admin"
+  name        = "${var.cluster-name}-alb-ingress-admin"
   description = "Permissions required by the AWS ALB Ingress Controller to manage AWS Application Load Balancers."
   # Policy statement
   policy = <<EOF
@@ -190,7 +190,7 @@ resource "aws_iam_role_policy_attachment" "observ-sec-eks-node-group-role-alb-in
 ########### Cluster Autoscaler admin policy #####################
 resource "aws_iam_policy" "cluster-autoscaler-admin" {
   # Policy config
-  name        = "${var.cluster_name}-cluster-autoscaler-admin"
+  name        = "${var.cluster-name}-cluster-autoscaler-admin"
   description = "Permissions required by the AWS ALB Ingress Controller to manage AWS Application Load Balancers."
 
   # Policy statement
@@ -225,7 +225,7 @@ resource "aws_iam_role_policy_attachment" "observ-sec-eks-node-group-role-cluste
 ###########  IAM policy for the CNI metrics helper #####################
 resource "aws_iam_policy" "cni-metrics-helper" {
   # Policy config
-  name        = "${var.cluster_name}-cni-metrics-helper"
+  name        = "${var.cluster-name}-cni-metrics-helper"
   description = "Permissions required by the Nodes to publish CNI metrics to cloudwatch."
 
   # Policy statement
