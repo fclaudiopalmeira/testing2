@@ -37,5 +37,6 @@ resource "aws_eks_cluster" "observ-sec-eks" {
   depends_on = [
     aws_iam_role_policy_attachment.observ-sec-eks-cluster-AmazonEKSClusterPolicy,
     aws_iam_role_policy_attachment.observ-sec-eks-cluster-AmazonEKSServicePolicy,
+    aws_iam_role_policy_attachment.observ-sec-eks-node-group-role-cluster-autoscaler-admin,
   ]
 }

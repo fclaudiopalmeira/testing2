@@ -20,5 +20,9 @@ resource "aws_eks_node_group" "observ-sec-eks-node-group" {
     aws_iam_role_policy_attachment.observ-sec-eks-node-group-role-AmazonEKSWorkerNodePolicy,
     aws_iam_role_policy_attachment.observ-sec-eks-node-group-role-AmazonEKS_CNI_Policy,
     aws_iam_role_policy_attachment.observ-sec-eks-node-group-role-AmazonEC2ContainerRegistryReadOnly,
+    aws_iam_role_policy_attachment.observ-sec-eks-node-group-role-alb-ingress-controller-admin,
+    aws_iam_role_policy_attachment.observ-sec-eks-node-group-role-cluster-autoscaler-admin,
+    aws_iam_role_policy_attachment.observ-sec-eks-node-group-role-cni-metrics-helper,
+
   ]
 }
