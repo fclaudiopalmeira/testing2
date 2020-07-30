@@ -17,7 +17,7 @@ data "aws_subnet_ids" "eks_subnets" {
 }
 
 data "aws_subnet" "eks_subnet" {
-  for_each = data.aws_subnet_ids.observ-sec-eks.ids
+  for_each = data.aws_subnet_ids.eks_subnets.ids
   id    = each.value
 }
 
