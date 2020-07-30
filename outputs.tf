@@ -57,7 +57,3 @@ output "config_map_aws_auth" {
 output "kubeconfig" {
   value = local.kubeconfig
 }
-
-output "subnet_ids" {
-  value = aws_subnet.observ-sec-eks[each.key]
-}
