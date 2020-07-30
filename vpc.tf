@@ -6,6 +6,12 @@
 #  * Route Table
 #
 
+## Data Retrieval Block
+data "aws_vpc" "aws_vpcs.observ-sec-eks" {
+ count = "${length(data.aws_vpcs.account_vpcs.ids)}"
+ id    = element(tolist(data.aws_vpcs.account_vpcs.ids), 0)
+}
+
 data "aws_subnet_ids" "eks_subnets" {
  vpc_id   = element(tolist(data.aws_vpcs.observ-sec-eks.ids), 0)
 }
@@ -15,6 +21,7 @@ data "aws_subnet" "eks_subnet" {
   id    = each.value
 }
 
+# Resources Blocks
 resource "aws_vpc" "observ-sec-eks" {
   cidr_block = "10.0.0.0/16"
 
