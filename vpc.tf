@@ -6,6 +6,15 @@
 #  * Route Table
 #
 
+data "aws_subnet_ids" "eks_subnets" {
+ vpc_id   = element(tolist(data.aws_vpcs.observ-sec-eks.ids), 0)
+}
+
+data "aws_subnet" "eks_subnet" {
+  for_each = data.aws_subnet_ids.aws_vpcs.observ-sec-eks.ids
+  id    = each.value
+}
+
 resource "aws_vpc" "observ-sec-eks" {
   cidr_block = "10.0.0.0/16"
 
@@ -16,10 +25,9 @@ resource "aws_vpc" "observ-sec-eks" {
 }
 
 resource "aws_subnet" "observ-sec-eks" {
-  count = 2
-
-  availability_zone       = data.aws_availability_zones.available.names[count.index]
-  cidr_block              = "10.0.${count.index}.0/24"
+  for_each = var.subnet_numbers
+  availability_zone       = each.key
+  cidr_block              = cidrsubnet(aws_vpc.observ-sec-eks.cidr_block, 8, each.value)
   map_public_ip_on_launch = true
   vpc_id                  = aws_vpc.observ-sec-eks.id
 
@@ -48,8 +56,7 @@ resource "aws_route_table" "observ-sec-eks" {
 }
 
 resource "aws_route_table_association" "observ-sec-eks" {
-  count = 2
-
-  subnet_id      = aws_subnet.observ-sec-eks.*.id[count.index]
+  for_each                         = {for s in data.aws_subnet.eks_subnets: s.ids => s}
+  subnet_id      = each.value.ids
   route_table_id = aws_route_table.observ-sec-eks.id
 }

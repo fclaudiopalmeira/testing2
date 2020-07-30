@@ -26,7 +26,7 @@ resource "kubernetes_deployment" "alb_ingress_controller" {
         container {
           name  = "alb-ingress-controller"
           image = "docker.io/amazon/aws-alb-ingress-controller:v1.1.8"
-          args  = ["--ingress-class=alb", "--cluster-name=devCluster", "--aws-vpc-id=vpc-xxxxxx"]
+          args  = ["--ingress-class=alb", "--cluster-name=${var.cluster-name}", "--aws-vpc-id=${aws_vpc.observ-sec-eks.id}"]
         }
 
         service_account_name = "alb-ingress-controller"
