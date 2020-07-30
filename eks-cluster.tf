@@ -33,7 +33,7 @@ resource "aws_eks_cluster" "observ-sec-eks" {
     security_group_ids = [aws_security_group.observ-sec-eks-cluster.id]
     # subnet_ids         = aws_subnet.observ-sec-eks[*].id
     for_each = data.aws_subnet_ids.eks_subnets.ids
-    subnet_ids    = each.value
+    subnet_ids    = each.key
   }
 
   depends_on = [
