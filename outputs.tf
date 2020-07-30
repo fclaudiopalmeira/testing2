@@ -59,5 +59,5 @@ output "kubeconfig" {
 }
 
 output "subnet_ids" {
-  value = aws_subnet.observ-sec-eks.ids
+  value = aws_subnet.observ-sec-eks[each.key]
 }
