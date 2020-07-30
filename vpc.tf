@@ -26,6 +26,7 @@ resource "aws_subnet" "observ-sec-eks" {
   tags = map(
     "Name", "terraform-eks-observ-sec-eks-node",
     "kubernetes.io/cluster/${var.cluster-name}", "shared",
+    "kubernetes.io/role/elb", "1"
   )
 }
 
