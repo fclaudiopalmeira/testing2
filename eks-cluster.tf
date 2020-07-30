@@ -27,7 +27,7 @@ resource "aws_security_group_rule" "observ-sec-eks-cluster-ingress-workstation-h
 
 resource "aws_eks_cluster" "observ-sec-eks" {
   name     = var.cluster-name
-  role_arn = aws_iam_role.observ-sec-eks-cluster.arn
+  role_arn = aws_iam_role.observ-sec-eks-cluster-role.arn
 
   vpc_config {
     security_group_ids = [aws_security_group.observ-sec-eks-cluster.id]

@@ -20,11 +20,11 @@ resource "aws_iam_role" "observ-sec-eks-cluster-role" {
 POLICY
 }
 # Managed policy attachments for EKS cluster role
-resource "aws_iam_role_policy_attachment" "customer-eks-AmazonEKSClusterPolicy" {
+resource "aws_iam_role_policy_attachment" "observ-sec-eks-cluster-AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   role = aws_iam_role.observ-sec-eks-cluster-role.name
 }
-resource "aws_iam_role_policy_attachment" "customer-eks-AmazonEKSServicePolicy" {
+resource "aws_iam_role_policy_attachment" "observ-sec-eks-cluster-AmazonEKSServicePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
   role = aws_iam_role.observ-sec-eks-cluster-role.name
 }
