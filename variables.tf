@@ -21,3 +21,8 @@ variable "tags" {
   default = ["k8s.io/cluster-autoscaler/enabled"]
   description = "AWS AutoScalingGroup tags."
 }
+
+variable "subnet_ids" {
+  type = list
+  default = [aws_subnet.observ-sec-eks.ids]
+}
