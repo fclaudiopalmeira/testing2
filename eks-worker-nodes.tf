@@ -9,16 +9,12 @@ resource "aws_eks_node_group" "observ-sec-eks-node-group" {
     max_size     = 1
     min_size     = 1
   }
-  
-  tags = map(
-      "k8s.io/cluster-autoscaler/enabled" = "true",
-      "k8s.io/cluster-autoscaler/${var.cluster-name}" = "owned",
-  )
-  /* tags =
+
+  tags =
     {
       "k8s.io/cluster-autoscaler/enabled" = "true"
       "k8s.io/cluster-autoscaler/${var.cluster-name}" = "owned"
-    } */
+    }
 
   depends_on = [
     aws_iam_role_policy_attachment.observ-sec-eks-node-group-role-AmazonEKSWorkerNodePolicy,
