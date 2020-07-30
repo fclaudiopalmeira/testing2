@@ -7,7 +7,7 @@
 #
 
 ## Data Retrieval Block
-data "aws_vpc" "aws_vpcs.observ-sec-eks" {
+data "aws_vpc" "observ-sec-eks" {
  count = "${length(data.aws_vpcs.account_vpcs.ids)}"
  id    = element(tolist(data.aws_vpcs.account_vpcs.ids), 0)
 }
