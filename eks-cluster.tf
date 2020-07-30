@@ -1,5 +1,5 @@
 resource "aws_security_group" "observ-sec-eks-cluster" {
-  name        = "terraform-eks-observ-sec-eks-cluster"
+  name        = "${var.cluster-name}-sg"
   description = "Cluster communication with worker nodes"
   vpc_id      = aws_vpc.observ-sec-eks.id
 
