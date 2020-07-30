@@ -10,13 +10,7 @@ resource "aws_eks_node_group" "observ-sec-eks-node-group" {
     min_size     = 1
   }
 
-  tags =
-    {
-      "k8s.io/cluster-autoscaler/enabled" = "true"
-      "k8s.io/cluster-autoscaler/${var.cluster-name}" = "owned"
-    }
-
-  depends_on = [
+ depends_on = [
     aws_iam_role_policy_attachment.observ-sec-eks-node-group-role-AmazonEKSWorkerNodePolicy,
     aws_iam_role_policy_attachment.observ-sec-eks-node-group-role-AmazonEKS_CNI_Policy,
     aws_iam_role_policy_attachment.observ-sec-eks-node-group-role-AmazonEC2ContainerRegistryReadOnly,
@@ -25,4 +19,10 @@ resource "aws_eks_node_group" "observ-sec-eks-node-group" {
     aws_iam_role_policy_attachment.observ-sec-eks-node-group-role-cni-metrics-helper,
 
   ]
+
+  tags =
+    {
+      "k8s.io/cluster-autoscaler/enabled" = "true"
+      "k8s.io/cluster-autoscaler/${var.cluster-name}" = "owned"
+    }
 }
