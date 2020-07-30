@@ -22,7 +22,7 @@ variable "tags" {
   description = "AWS AutoScalingGroup tags."
 }
 
-variable "subnet_ids" {
+/* variable "subnet_ids" {
   type = list
   default = [aws_subnet.observ-sec-eks.ids]
-}
+} */
