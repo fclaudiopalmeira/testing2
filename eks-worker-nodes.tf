@@ -26,7 +26,7 @@ resource "aws_eks_node_group" "observ-sec-eks-node-group" {
       "k8s.io/cluster-autoscaler/${var.cluster-name}" = "owned"
     } */
     tags = {
-    "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared"
-    "kubernetes.io/role/internal-elb" = 1
+    "k8s.io/cluster-autoscaler/enabled" = "true"
+    "k8s.io/cluster-autoscaler/${var.cluster-name}" = "owned"
   }
 }
