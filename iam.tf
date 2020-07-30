@@ -216,7 +216,7 @@ resource "aws_iam_policy" "cluster-autoscaler-admin" {
 EOF
 }
 
-##################33 Policy attachment for the Cluster Autoscaler, this policy like the alb one, is attached to the nodes ################3
+################## Policy attachment for the Cluster Autoscaler, this policy like the alb one, is attached to the nodes ################3
 resource "aws_iam_role_policy_attachment" "observ-sec-eks-node-group-role-cluster-autoscaler-admin" {
   policy_arn = aws_iam_policy.cluster-autoscaler-admin.arn
   role       = aws_iam_role.observ-sec-eks-node-group-role.name
