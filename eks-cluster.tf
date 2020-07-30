@@ -31,7 +31,7 @@ resource "aws_eks_cluster" "observ-sec-eks" {
 
   vpc_config {
     security_group_ids = [aws_security_group.observ-sec-eks-cluster.id]
-    subnet_ids         = "${data.aws_subnets.eks_subnets.*.id}"
+    subnet_ids         = "${data.aws_subnet_ids.eks_subnets.*.ids}"
     /* for_each = data.aws_subnet_ids.eks_subnets.ids
     subnet_ids    = each.key */
   }
