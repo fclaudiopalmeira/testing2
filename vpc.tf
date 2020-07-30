@@ -65,7 +65,7 @@ resource "aws_route_table" "observ-sec-eks" {
 }
 
 resource "aws_route_table_association" "observ-sec-eks" {
-  for_each                         = {for s in data.aws_subnet.eks_subnets: s.ids => s}
-  subnet_id      = each.value.ids
+  for_each                         = {for s in data.aws_subnet.eks_subnets: s.id => s}
+  subnet_id      = each.value.id
   route_table_id = aws_route_table.observ-sec-eks.id
 }
