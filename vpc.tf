@@ -8,8 +8,9 @@
 
 ## Data Retrieval Block
 data "aws_vpcs" "observ-sec-eks" {
-  tags = {
-    Name = "terraform-eks-observ-sec-eks-vpc"
+  filter {
+    name   = "tag:Name"
+    values = ["terraform-eks-observ-sec-eks-vpc"] # insert value here
   }
 }
 
@@ -45,7 +46,7 @@ resource "aws_subnet" "observ-sec-eks" {
   vpc_id                  = aws_vpc.observ-sec-eks.id
 
   tags = map(
-    "Name", "terraform-eks-observ-sec-eks-node",
+    "Name", "terraform-eks-observ-sec-eks-subnets",
     "kubernetes.io/cluster/${var.cluster-name}", "shared",
     "kubernetes.io/role/elb", "1"
   )
