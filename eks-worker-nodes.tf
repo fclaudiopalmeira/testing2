@@ -2,7 +2,7 @@ resource "aws_eks_node_group" "observ-sec-eks-node-group" {
   cluster_name    = var.cluster-name
   node_group_name = "observ-sec-eks-node-group"
   node_role_arn   = aws_iam_role.observ-sec-eks-node-group-role.arn
-  subnet_ids      = aws_subnet.observ-sec-eks[*].id
+  subnet_ids      = flatten([data.aws_subnet_ids.eks_subnets.*.ids])
 
   scaling_config {
     desired_size = 1
