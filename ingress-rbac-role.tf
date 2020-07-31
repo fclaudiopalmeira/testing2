@@ -18,6 +18,10 @@ resource "kubernetes_cluster_role" "alb_ingress_controller" {
     api_groups = ["", "extensions"]
     resources  = ["nodes", "pods", "secrets", "services", "namespaces"]
   }
+  depends_on = [
+    aws_eks_cluster.observ-sec-eks,
+    aws_eks_node_group.observ-sec-eks-node-group,
+  ]
 }
 
 resource "kubernetes_cluster_role_binding" "alb_ingress_controller" {
@@ -40,6 +44,10 @@ resource "kubernetes_cluster_role_binding" "alb_ingress_controller" {
     kind      = "ClusterRole"
     name      = "alb-ingress-controller"
   }
+  depends_on = [
+    aws_eks_cluster.observ-sec-eks,
+    aws_eks_node_group.observ-sec-eks-node-group,
+  ]
 }
 
 resource "kubernetes_service_account" "alb_ingress_controller" {
@@ -51,5 +59,9 @@ resource "kubernetes_service_account" "alb_ingress_controller" {
       "app.kubernetes.io/name" = "alb-ingress-controller"
     }
   }
+  depends_on = [
+    aws_eks_cluster.observ-sec-eks,
+    aws_eks_node_group.observ-sec-eks-node-group,
+  ]
 }
 

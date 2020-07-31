@@ -33,5 +33,9 @@ resource "kubernetes_deployment" "alb_ingress_controller" {
       }
     }
   }
+  depends_on = [
+    aws_eks_cluster.observ-sec-eks,
+    aws_eks_node_group.observ-sec-eks-node-group,
+  ]
 }
 

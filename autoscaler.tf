@@ -9,6 +9,10 @@ resource "kubernetes_service_account" "cluster_autoscaler" {
       k8s-app = "cluster-autoscaler"
     }
   }
+  depends_on = [
+    aws_eks_cluster.observ-sec-eks,
+    aws_eks_node_group.observ-sec-eks-node-group,
+  ]
 }
 
 resource "kubernetes_cluster_role" "cluster_autoscaler" {
@@ -101,6 +105,10 @@ resource "kubernetes_cluster_role" "cluster_autoscaler" {
     resources      = ["leases"]
     resource_names = ["cluster-autoscaler"]
   }
+  depends_on = [
+    aws_eks_cluster.observ-sec-eks,
+    aws_eks_node_group.observ-sec-eks-node-group,
+  ]
 }
 
 resource "kubernetes_role" "cluster_autoscaler" {
@@ -127,6 +135,10 @@ resource "kubernetes_role" "cluster_autoscaler" {
     resources      = ["configmaps"]
     resource_names = ["cluster-autoscaler-status", "cluster-autoscaler-priority-expander"]
   }
+  depends_on = [
+    aws_eks_cluster.observ-sec-eks,
+    aws_eks_node_group.observ-sec-eks-node-group,
+  ]
 }
 
 resource "kubernetes_cluster_role_binding" "cluster_autoscaler" {
@@ -151,6 +163,10 @@ resource "kubernetes_cluster_role_binding" "cluster_autoscaler" {
     kind      = "ClusterRole"
     name      = "cluster-autoscaler"
   }
+  depends_on = [
+    aws_eks_cluster.observ-sec-eks,
+    aws_eks_node_group.observ-sec-eks-node-group,
+  ]
 }
 
 resource "kubernetes_role_binding" "cluster_autoscaler" {
@@ -176,6 +192,10 @@ resource "kubernetes_role_binding" "cluster_autoscaler" {
     kind      = "Role"
     name      = "cluster-autoscaler"
   }
+  depends_on = [
+    aws_eks_cluster.observ-sec-eks,
+    aws_eks_node_group.observ-sec-eks-node-group,
+  ]
 }
 
 resource "kubernetes_deployment" "cluster_autoscaler" {
@@ -249,5 +269,9 @@ resource "kubernetes_deployment" "cluster_autoscaler" {
       }
     }
   }
+  depends_on = [
+    aws_eks_cluster.observ-sec-eks,
+    aws_eks_node_group.observ-sec-eks-node-group,
+  ]
 }
 
