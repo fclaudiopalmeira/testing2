@@ -7,7 +7,11 @@
 #
 
 ## Data Retrieval Block
-data "aws_vpcs" "observ-sec-eks" {}
+data "aws_vpcs" "observ-sec-eks" {
+  tags = {
+    Name = "terraform-eks-observ-sec-eks-vpc"
+  }
+}
 
 data "aws_vpc" "observ-sec-eks" {
  count = "${length(data.aws_vpcs.observ-sec-eks.ids)}"
@@ -28,7 +32,7 @@ resource "aws_vpc" "observ-sec-eks" {
   cidr_block = "10.0.0.0/16"
 
   tags = map(
-    "Name", "terraform-eks-observ-sec-eks-node",
+    "Name", "terraform-eks-observ-sec-eks-vpc",
     "kubernetes.io/cluster/${var.cluster-name}", "shared",
   )
 }
