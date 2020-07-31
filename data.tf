@@ -1,9 +1,9 @@
 ## Data Retrieval Block
 data "aws_vpcs" "observ-sec-eks" {
-  filter {
+/*   filter {
     name   = "tag:Name"
     values = ["terraform-eks-observ-sec-eks-vpc"]
-  }
+  } */
 }
 
 data "aws_vpc" "observ-sec-eks" {
